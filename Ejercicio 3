@@ -1,0 +1,45 @@
+pipeline{
+    agent any
+    stages{
+        stage("stg1"){
+            steps{
+                echo "El Padrino"
+                echo "Mad Max"
+                echo "12 hombres sin piedad"
+                echo "LosBingueros"
+                echo "Bittlejuise"
+            }
+        }
+        stage("stg2"){
+            steps{
+                echo "Cocido Montañes"
+            }
+        }
+        stage("stg3"){
+            steps{
+                echo "piscis"
+            }
+        }
+        stage("stg4"){
+            steps{
+                echo "Consultor APM"
+            }
+        }
+        stage("salarios"){
+            steps{
+                script{
+                    output = salarioneto(3000)
+                    echo "el salario neto es de ${output}"
+                }
+            }
+        }
+    }
+}
+
+def salarioneto(Integer bruto){
+    def neto
+    if (bruto > 1000){
+        neto = bruto * 0.8
+        return neto
+    }    
+}
