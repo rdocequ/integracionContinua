@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    stages{
+        stage("stg1"){
+            steps{
+                echo "clima ahora: lluvia"
+            }
+        }
+        stage("stg2"){
+            steps{
+                echo "clima habitual: lluvia"
+            }
+        }
+        stage("stg3"){
+            steps{
+                script{
+                    output = poblacionNeta(200)
+                    echo "la poblacion es ${output}"
+                }
+            }
+        }
+    }
+}
+
+def poblacionNeta(Integer poblacion){
+    a = poblacion / 2
+    return a
+}
