@@ -1,0 +1,33 @@
+def hour = 13
+pipeline{
+    agent any
+    stages{
+        stage("stg1"){
+            steps{
+                script{
+                    if (hour > 12){
+                        echo "se corre el proceso"
+                            javaversion()
+                            usuario ()
+                            idJenkins()
+                    }
+                    else{
+                        echo "no se corre el proces"   
+                    }
+                }
+            }
+        }
+    }
+}
+
+def javaversion(){
+    bat "java -version"
+}
+
+def idJenkins(){
+    echo "rdocequ"
+}
+
+def usuario(){
+    bat "echo %username%"
+}
