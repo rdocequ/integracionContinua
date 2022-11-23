@@ -1,0 +1,54 @@
+import java.lang.Math
+pipeline {
+    agent any 
+    
+    stages {
+        stage("Comprobar fecha") {
+            steps {
+                script {
+                    def dia = new Date().getDay()
+                    def map=[
+                        1:"Lunes",
+                        2:"Martes",
+                        3:"Miercoles",
+                        4:"Jueves",
+                        5:"Viernes",
+                        6:"Sabado",
+                        7:"Domingo",
+                    ]
+                    echo map[dia]
+                    if(map[dia] == "Lunes"){
+                        echo "Hoy por fin vemos el Sol, es amarillo"
+                    }
+                    if(map[dia] == "Martes"){
+                        def a = 150
+                        def b = 350
+                        def suma = a + b
+                        echo "la suma es ${suma}"
+                    }
+                    if(map[dia] == "Miercoles"){
+                        def pi
+                        pi = Math.PI
+                        echo pi as String
+                    }
+                    if(map[dia] == "Jueves"){
+                        echo "Roberto"
+                    }
+                    if(map[dia] == "Viernes"){
+                        javaversion()
+                    }
+                    if(map[dia] == "Sabado"){
+                        echo "no hacer nada"
+                    }
+                    if(map[dia] == "Domingo"){
+                        echo "no hacer nada"
+                    }
+                }
+            }
+        }
+    }
+}
+
+def javaversion(){
+    bat "java -version"
+}
