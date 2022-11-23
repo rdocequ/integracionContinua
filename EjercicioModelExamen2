@@ -1,0 +1,50 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+pipeline{
+    agent any
+    stages{
+        stage("horarios"){
+            steps{
+                script{
+                    LocalDateTime myDateObj = LocalDateTime.now()
+                    println("Before formatting: " + myDateObj)
+                    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH")
+                    
+                    String formattedDate = myDateObj.format(myFormatObj)
+                    println("After formatting: " + formattedDate)
+                    dia = formattedDate as Integer
+                    println dia
+                    if (dia >= 0 && dia <=10){
+                        echo "comando1 git version"
+                        comando1()
+                    }
+                    if (dia >= 11 && dia <=15){
+                        echo "comando1 ipconfig"
+                        comando2()
+                    }
+                    if (dia >= 16 && dia <=22){
+                        echo "comando3 time"
+                        comando3()
+                    }
+                }
+            }
+        }
+    }
+}
+
+def comando1(){
+    println("entra")
+    bat "git --version"
+}
+
+def comando2(){
+    println("entra")
+    bat "dir"
+    println("sale")
+}
+
+def comando3(){
+   // bat "TIME /t"
+}
+
